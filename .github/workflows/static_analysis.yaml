@@ -14,4 +14,3 @@ jobs:
         with:
           directory: .
           quiet: true # display only failed checks
-          download_external_modules: true # download external terraform modules from public git repositories and terraform registry
