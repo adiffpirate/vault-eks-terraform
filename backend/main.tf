@@ -14,7 +14,9 @@ provider "aws" {
 
 resource "aws_kms_key" "terraform_state_encryption_key" {
   description = "Key used to encrypt/decrypt the terraform state bucket objects"
-  is_enabled  = true
+
+  is_enabled          = true
+  enable_key_rotation = true
 
   tags = {
     Name    = "${var.project}-kms-terraform-state"
