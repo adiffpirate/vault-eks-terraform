@@ -1,3 +1,5 @@
+![Build Status](https://github.com/adiffpirate/vault-eks-terraform/actions/workflows/static_analysis.yaml/badge.svg?branch=develop)
+
 # Vault on EKS with Terraform
 
 The `.tfstate` file for this project is stored in a encrypted S3 bucket.
