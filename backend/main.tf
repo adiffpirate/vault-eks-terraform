@@ -53,6 +53,13 @@ resource "aws_s3_bucket" "terraform_state" {
   }
 }
 
+resource "aws_s3_bucket_public_access_block" "access_terraform_state" {
+  bucket = aws_s3_bucket.terraform_state.id
+
+  block_public_acls   = true
+  block_public_policy = true
+}
+
 resource "aws_dynamodb_table" "terraform_state_lock" {
   name = "${var.project}-terraform-state-lock"
 
