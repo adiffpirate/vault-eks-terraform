@@ -1,14 +1,14 @@
-name: 'Run Static Application Security Testing on project'
+name: 'CI Pipeline'
 on: push
 jobs:
-  checkov-job:
+  static-analysis:
     runs-on: ubuntu-latest
     name: checkov-action
     steps:
-      - name: Checkout repo
+      - name: Checkout
         uses: actions/checkout@master
 
-      - name: Run Checkov action
+      - name: Run Checkov
         id: checkov
         uses: bridgecrewio/checkov-action@master
         with:
