@@ -1,5 +1,5 @@
 resource "aws_security_group" "ssh_eks_cluster" {
-  name        = "${var.eks_cluster_name}-sg-ssh"
+  name        = "${var.eks_cluster.name}-sg-ssh"
   description = "Allows SSH connections to all machines within the EKS cluster"
 
   vpc_id = var.network.vpc_id
@@ -13,7 +13,7 @@ resource "aws_security_group" "ssh_eks_cluster" {
   }
 
   tags = {
-    Name        = "${var.eks_cluster_name}-sg-ssh"
+    Name        = "${var.eks_cluster.name}-sg-ssh"
     project     = var.context.project
     environment = var.context.environment
   }

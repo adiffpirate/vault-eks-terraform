@@ -27,20 +27,20 @@ module "vpc" {
   tags = {
     project     = var.context.project
     environment = var.context.environment
-    "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
+    "kubernetes.io/cluster/${var.eks_cluster.name}" = "shared"
   }
 
   private_subnet_tags = {
     project     = var.context.project
     environment = var.context.environment
-    "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
+    "kubernetes.io/cluster/${var.eks_cluster.name}" = "shared"
     "kubernetes.io/role/internal-elb"               = "1"
   }
 
   public_subnet_tags = {
     project     = var.context.project
     environment = var.context.environment
-    "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
+    "kubernetes.io/cluster/${var.eks_cluster.name}" = "shared"
     "kubernetes.io/role/elb"                        = "1"
   }
 }
