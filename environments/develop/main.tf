@@ -9,12 +9,8 @@ terraform {
   }
 }
 
-locals {
-  context = var.context
-}
-
 provider "aws" {
-  region = local.context.region
+  region = var.context.region
 }
 
 provider "kubernetes" {
@@ -26,13 +22,8 @@ provider "kubernetes" {
 module "network" {
   source = "../../modules/network"
 
-  context = local.context
-
-  network_vpc_name = var.network_vpc_name
-  network_vpc_cidr = var.network_vpc_cidr
-  network_vpc_private_subnets_cidr = var.network_vpc_private_subnets_cidr
-  network_vpc_public_subnets_cidr = var.network_vpc_public_subnets_cidr
-  network_one_nat_gateway_per_az = var.network_one_nat_gateway_per_az
+  context = var.context
+  network = var.network
 
   eks_cluster_name = var.eks_cluster_name
 }
@@ -40,7 +31,8 @@ module "network" {
 module "eks_cluster" {
   source = "../../modules/eks_cluster"
 
-  context = local.context
+  context = var.context
+  network = module.network
 
   eks_cluster_name = var.eks_cluster_name
   eks_cluster_version = var.eks_cluster_version
@@ -49,8 +41,4 @@ module "eks_cluster" {
   eks_worker_asg_desired = var.eks_worker_asg_desired
   eks_worker_asg_min = var.eks_worker_asg_min
   eks_worker_asg_max = var.eks_worker_asg_max
-
-  network_vpc_cidr = var.network_vpc_cidr
-  network_vpc_id = module.network.vpc_id
-  network_vpc_private_subnets_ids = module.network.vpc_private_subnets_ids
 }

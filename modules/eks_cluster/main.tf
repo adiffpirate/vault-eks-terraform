@@ -9,10 +9,6 @@ terraform {
   }
 }
 
-locals {
-  context = var.context
-}
-
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "17.20.0"
@@ -20,8 +16,8 @@ module "eks" {
   cluster_name    = var.eks_cluster_name
   cluster_version = var.eks_cluster_version
 
-  vpc_id  = var.network_vpc_id
-  subnets = var.network_vpc_private_subnets_ids
+  vpc_id  = var.network.vpc_id
+  subnets = var.network.vpc_private_subnets_ids
 
   worker_groups = [
     {
@@ -37,8 +33,8 @@ module "eks" {
 
   tags = {
     Name        = var.eks_cluster_name
-    project     = local.context.project
-    environment = local.context.environment
+    project     = var.context.project
+    environment = var.context.environment
   }
 }
 

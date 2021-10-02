@@ -7,6 +7,17 @@ variable "context" {
   })
 }
 
+variable "network" {
+  type = object({
+    # VPC ID
+    vpc_id = string
+    # VPC CIDR block
+    vpc_cidr = string
+    # IDs for the private subnets on the VPC
+    vpc_private_subnets_ids = list(any)
+  })
+}
+
 
 
 # EKS
@@ -50,17 +61,3 @@ variable "eks_worker_asg_max" {
 
 # Network
 
-variable "network_vpc_id" {
-  type        = string
-  description = "VPC ID"
-}
-
-variable "network_vpc_cidr" {
-  type        = string
-  description = "VPC CIDR block"
-}
-
-variable "network_vpc_private_subnets_ids" {
-  type        = list
-  description = "IDs for the private subnets on the VPC"
-}

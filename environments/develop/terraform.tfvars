@@ -4,12 +4,13 @@ context = {
   region = "eu-west-1"
 }
 
-# Network
-network_vpc_name = "luiz-monteiro-vault-vpc-dev"
-network_vpc_cidr = "10.0.0.0/16"
-network_vpc_private_subnets_cidr = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
-network_vpc_public_subnets_cidr = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
-network_one_nat_gateway_per_az = false
+network = {
+  vpc_name = "luiz-monteiro-vault-vpc-dev"
+  vpc_cidr = "10.0.0.0/16"
+  vpc_private_subnets_cidr = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  vpc_public_subnets_cidr = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+  one_nat_gateway_per_az = false
+}
 
 # EKS
 eks_cluster_name = "luiz-monteiro-vault-eks-cluster-dev"

@@ -2,16 +2,8 @@ output "context" {
   value = var.context
 }
 
-# Network
-
-output "network_vpc_id" {
-  description = "VPC ID"
-  value       = module.network.vpc_id
-}
-
-output "network_vpc_private_subnets_ids" {
-  description = "IDs for the private subnets on the VPC"
-  value       = module.network.vpc_private_subnets_ids
+output "network" {
+  value = module.network
 }
 
 # EKS
