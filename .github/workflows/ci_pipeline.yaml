@@ -8,6 +8,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
+      - name: Validate Terraform
+        uses: dflook/terraform-validate@v1
+        with:
+          path: environments/develop
+
       - name: Run Checkov
         id: checkov
         uses: bridgecrewio/checkov-action@master
