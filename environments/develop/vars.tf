@@ -1,12 +1,13 @@
 variable "context" {
   type = object({
-
     # Project Name
     project = string
 
+    # Region
+    region = string
+
     # Environment
     environment = string
-
   })
 }
 
@@ -15,15 +16,21 @@ variable "context" {
 variable "network" {
   type = object({
 
-    # VPC ID
-    vpc_id = string
+    # VPC Name
+    vpc_name = string
 
     # VPC CIDR block
     vpc_cidr = string
 
-    # IDs for the private subnets on the VPC
-    vpc_private_subnets_ids = list(any)
+    # CIDR block for the private subnets
+    vpc_private_subnets_cidr = list(any)
 
+    # CIDR block for the public subnets
+    vpc_public_subnets_cidr = list(any)
+
+    # Create a NAT Gateway in each Availability Zone
+    # (If this option is set to false it will create a single NAT Gateway instead)
+    one_nat_gateway_per_az = bool
   })
 }
 

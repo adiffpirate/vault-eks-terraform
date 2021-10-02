@@ -1,38 +1,46 @@
-variable "project" {
-  type        = string
-  description = "Project Name"
+variable "context" {
+  type = object({
+
+    # Project Name
+    project = string
+
+    # Environment
+    environment = string
+
+  })
 }
 
-# Network
 
-variable "network_azs" {
-  type        = list
-  description = "AWS Availability Zones"
+
+variable "network" {
+  type = object({
+
+    # VPC Name
+    vpc_name = string
+
+    # VPC CIDR block
+    vpc_cidr = string
+
+    # CIDR block for the private subnets
+    vpc_private_subnets_cidr = list(any)
+
+    # CIDR block for the public subnets
+    vpc_public_subnets_cidr = list(any)
+
+    # Create a NAT Gateway in each Availability Zone
+    # (If this option is set to false it will create a single NAT Gateway instead)
+    one_nat_gateway_per_az = bool
+
+  })
 }
 
-variable "network_vpc_name" {
-  type        = string
-  description = "VPC Name"
-}
 
-variable "network_vpc_cidr" {
-  type        = string
-  description = "VPC CIDR block"
-}
 
-variable "network_vpc_private_subnets_cidr" {
-  type        = list
-  description = "CIDR block for the private subnets"
-}
+variable "eks_cluster" {
+  type = object({
 
-variable "network_vpc_public_subnets_cidr" {
-  type        = list
-  description = "CIDR block for the public subnets"
-}
+    # EKS Cluster Name
+    name = string
 
-# EKS
-
-variable "eks_cluster_name" {
-  type        = string
-  description = "EKS Cluster Name"
+  })
 }

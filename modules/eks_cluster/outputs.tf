@@ -1,19 +1,24 @@
-output "cluster_id" {
+output "id" {
   description = "EKS cluster ID."
   value       = module.eks.cluster_id
 }
 
-output "cluster_name" {
-  description = "Kubernetes Cluster Name"
-  value       = var.eks_cluster_name
+output "name" {
+  description = "EKS Cluster Name"
+  value       = var.eks_cluster.name
 }
 
-output "cluster_endpoint" {
+output "version" {
+  description = "EKS Cluster Version"
+  value       = var.eks_cluster.version
+}
+
+output "endpoint" {
   description = "Endpoint for EKS control plane."
   value       = module.eks.cluster_endpoint
 }
 
-output "cluster_security_group_id" {
+output "security_group_id" {
   description = "Security group ids attached to the cluster control plane."
   value       = module.eks.cluster_security_group_id
 }
@@ -28,14 +33,18 @@ output "config_map_aws_auth" {
   value       = module.eks.config_map_aws_auth
 }
 
-output "ca_certificate" {
-  description = "PEM-encoded root certificates bundle for TLS authentication."
-  value       = data.aws_eks_cluster.eks.certificate_authority[0].data
-  sensitive   = true
-}
 
-output "service_account_token" {
-  description = "Service Account Token"
-  value       = data.aws_eks_cluster_auth.eks.token
-  sensitive   = true
+# All sensitive data MUST be declared inside this object.
+# (for more information please refer to the root 'outputs.tf' file)
+output "sensitive" {
+  sensitive = true
+  value = {
+
+    # PEM-encoded root certificates bundle for TLS authentication
+    ca_certificate = data.aws_eks_cluster.eks.certificate_authority[0].data
+
+    # Service Account Token
+    service_account_token = data.aws_eks_cluster_auth.eks.token
+
+  }
 }
