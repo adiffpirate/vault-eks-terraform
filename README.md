@@ -1,20 +1,14 @@
-![Build Status](https://github.com/adiffpirate/vault-eks-terraform/actions/workflows/static_analysis.yaml/badge.svg?branch=develop)
+![Build Status](https://github.com/adiffpirate/vault-eks-terraform/actions/workflows/ci_pipeline.yaml/badge.svg)
 
 # Vault on EKS with Terraform
 
-The `.tfstate` file for this project is stored in a encrypted S3 bucket.
-To create said bucket please refer to the `backend` directory.
+**This project is currently in development**
 
-Since we can't use variables to define the bucket name, region, and some other
-things, **in order to properly intialize terraform you must use the following
-script** _(instead of the usual `terraform init` command)_:
+In order to spin up the infrastructure you must run `terraform apply` inside
+the development environment directory:
 ```sh
-./terraform_init {YOUR_BACKEND_TFVARS_FILE}
+cd environments/develop
 ```
-
-> By default, the script uses `backend/terraform.tfvars`
-
-Then, you can spin up the infrastructure:
 ```sh
 terraform apply
 ```
