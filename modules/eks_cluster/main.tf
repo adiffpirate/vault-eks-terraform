@@ -20,13 +20,13 @@ module "eks" {
   subnets = var.network.vpc_private_subnets_ids
 
   worker_groups = [
-    {
-      name                          = "${var.eks_cluster.name}-worker-1"
-      instance_type                 = var.eks_cluster.worker_instance_type
-      asg_desired_capacity          = var.eks_cluster.worker_asg_desired
-      asg_min_size                  = var.eks_cluster.worker_asg_min
-      asg_max_size                  = var.eks_cluster.worker_asg_max
-      root_volume_size              = var.eks_cluster.worker_volume_size
+    for i in range(var.eks_cluster.workers.count) : {
+      name                          = "worker-${i}"
+      instance_type                 = var.eks_cluster.workers.instance_type
+      asg_desired_capacity          = var.eks_cluster.workers.asg.desired
+      asg_min_size                  = var.eks_cluster.workers.asg.min
+      asg_max_size                  = var.eks_cluster.workers.asg.max
+      root_volume_size              = var.eks_cluster.workers.volume_size
       additional_security_group_ids = [aws_security_group.ssh_eks_cluster.id]
     }
   ]

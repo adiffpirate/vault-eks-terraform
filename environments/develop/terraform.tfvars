@@ -15,9 +15,18 @@ network = {
 eks_cluster = {
   name = "luiz-monteiro-vault-eks-cluster-dev"
   version = "1.21" # Must only provide the major and minor versions since AWS handles the patch
-  worker_instance_type = "t2.small"
-  worker_volume_size = 5
-  worker_asg_desired = 3
-  worker_asg_min = 2
-  worker_asg_max = 5
+
+  workers = {
+    count = 1
+    instance_type = "t2.small"
+    volume_size = 5
+
+    asg = {
+      desired = 2
+      min = 1
+      max = 3
+    }
+
+  }
+
 }
