@@ -43,8 +43,8 @@ output "sensitive" {
     # PEM-encoded root certificates bundle for TLS authentication
     ca_certificate = data.aws_eks_cluster.eks.certificate_authority[0].data
 
-    # Service Account Token
-    service_account_token = data.aws_eks_cluster_auth.eks.token
+    # EKS Auth Token
+    auth_token = data.aws_eks_cluster_auth.eks.token
 
   }
 }
