@@ -3,12 +3,12 @@ variable "project" {
   description = "Project Name"
 }
 
-# Network
-
-variable "network_azs" {
-  type        = list
-  description = "AWS Availability Zones"
+variable "environment" {
+  type        = string
+  description = "Environment"
 }
+
+# Network
 
 variable "network_vpc_name" {
   type        = string
@@ -28,6 +28,14 @@ variable "network_vpc_private_subnets_cidr" {
 variable "network_vpc_public_subnets_cidr" {
   type        = list
   description = "CIDR block for the public subnets"
+}
+
+variable "network_one_nat_gateway_per_az" {
+  type        = bool
+  description = <<EOT
+  Create a NAT Gateway in each Availability Zone.
+  If this option is set to false it will create a single NAT Gateway instead.
+  EOT
 }
 
 # EKS

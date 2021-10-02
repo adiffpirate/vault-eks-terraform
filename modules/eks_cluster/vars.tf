@@ -3,6 +3,11 @@ variable "project" {
   description = "Project Name"
 }
 
+variable "environment" {
+  type        = string
+  description = "Environment"
+}
+
 
 
 # EKS

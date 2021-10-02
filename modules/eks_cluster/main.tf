@@ -34,6 +34,7 @@ module "eks" {
   tags = {
     Name = var.eks_cluster_name
     project = var.project
+    environment = var.environment
   }
 }
 

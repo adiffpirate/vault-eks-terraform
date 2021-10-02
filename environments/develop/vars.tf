@@ -8,6 +8,11 @@ variable "region" {
   description = "AWS Region"
 }
 
+variable "environment" {
+  type        = string
+  description = "Environment"
+}
+
 
 
 # Network
@@ -30,6 +35,11 @@ variable "network_vpc_private_subnets_cidr" {
 variable "network_vpc_public_subnets_cidr" {
   type        = list
   description = "CIDR block for the public subnets"
+}
+
+variable "network_one_nat_gateway_per_az" {
+  type        = bool
+  description = "Create a NAT Gateway in each Availability Zone"
 }
 
 

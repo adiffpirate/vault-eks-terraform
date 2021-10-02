@@ -7,10 +7,6 @@ terraform {
       version = "~> 3.0"
     }
   }
-
-  backend "s3" {
-    encrypt = true
-  }
 }
 
 provider "aws" {
@@ -23,28 +19,26 @@ provider "kubernetes" {
   token                  = module.eks_cluster.service_account_token
 }
 
-data "aws_availability_zones" "available" {
-  state = "available"
-}
-
 module "network" {
-  source = "./modules/network"
+  source = "../../modules/network"
 
-  project = var.project
+  project     = var.project
+  environment = var.environment
 
-  network_azs = data.aws_availability_zones.available.names
   network_vpc_name = var.network_vpc_name
   network_vpc_cidr = var.network_vpc_cidr
   network_vpc_private_subnets_cidr = var.network_vpc_private_subnets_cidr
   network_vpc_public_subnets_cidr = var.network_vpc_public_subnets_cidr
+  network_one_nat_gateway_per_az = var.network_one_nat_gateway_per_az
 
   eks_cluster_name = var.eks_cluster_name
 }
 
 module "eks_cluster" {
-  source = "./modules/eks_cluster"
+  source = "../../modules/eks_cluster"
 
-  project = var.project
+  project     = var.project
+  environment = var.environment
 
   eks_cluster_name = var.eks_cluster_name
   eks_cluster_version = var.eks_cluster_version
