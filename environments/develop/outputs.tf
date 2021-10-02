@@ -1,11 +1,5 @@
-output "project" {
-  description = "Project Name"
-  value       = var.project
-}
-
-output "region" {
-  description = "AWS Region"
-  value       = var.region
+output "context" {
+  value = var.context
 }
 
 # Network

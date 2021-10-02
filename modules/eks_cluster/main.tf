@@ -9,6 +9,10 @@ terraform {
   }
 }
 
+locals {
+  context = var.context
+}
+
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "17.20.0"
@@ -32,9 +36,9 @@ module "eks" {
   ]
 
   tags = {
-    Name = var.eks_cluster_name
-    project = var.project
-    environment = var.environment
+    Name        = var.eks_cluster_name
+    project     = local.context.project
+    environment = local.context.environment
   }
 }
 

@@ -9,6 +9,10 @@ terraform {
   }
 }
 
+locals {
+  context = var.context
+}
+
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "3.7.0"
@@ -25,21 +29,21 @@ module "vpc" {
   single_nat_gateway = var.network_one_nat_gateway_per_az == true ? false : true
 
   tags = {
-    project = var.project
-    environment = var.environment
+    project     = local.context.project
+    environment = local.context.environment
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
   }
 
   private_subnet_tags = {
-    project = var.project
-    environment = var.environment
+    project     = local.context.project
+    environment = local.context.environment
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
     "kubernetes.io/role/internal-elb"               = "1"
   }
 
   public_subnet_tags = {
-    project = var.project
-    environment = var.environment
+    project     = local.context.project
+    environment = local.context.environment
     "kubernetes.io/cluster/${var.eks_cluster_name}" = "shared"
     "kubernetes.io/role/elb"                        = "1"
   }

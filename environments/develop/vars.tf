@@ -1,16 +1,12 @@
-variable "project" {
-  type        = string
-  description = "Project Name"
-}
-
-variable "region" {
-  type        = string
-  description = "AWS Region"
-}
-
-variable "environment" {
-  type        = string
-  description = "Environment"
+variable "context" {
+  type = object({
+    # Project Name
+    project     = string
+    # Region
+    region      = string
+    # Environment
+    environment = string
+  })
 }
 
 

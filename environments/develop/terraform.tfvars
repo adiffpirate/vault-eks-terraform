@@ -1,6 +1,8 @@
-project = "luiz-monteiro-vault"
-environment = "development"
-region = "eu-west-1"
+context = {
+  project = "luiz-monteiro-vault"
+  environment = "development"
+  region = "eu-west-1"
+}
 
 # Network
 network_vpc_name = "luiz-monteiro-vault-vpc-dev"

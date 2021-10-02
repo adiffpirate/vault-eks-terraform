@@ -9,8 +9,12 @@ terraform {
   }
 }
 
+locals {
+  context = var.context
+}
+
 provider "aws" {
-  region = var.region
+  region = local.context.region
 }
 
 provider "kubernetes" {
@@ -22,8 +26,7 @@ provider "kubernetes" {
 module "network" {
   source = "../../modules/network"
 
-  project     = var.project
-  environment = var.environment
+  context = local.context
 
   network_vpc_name = var.network_vpc_name
   network_vpc_cidr = var.network_vpc_cidr
@@ -37,8 +40,7 @@ module "network" {
 module "eks_cluster" {
   source = "../../modules/eks_cluster"
 
-  project     = var.project
-  environment = var.environment
+  context = local.context
 
   eks_cluster_name = var.eks_cluster_name
   eks_cluster_version = var.eks_cluster_version

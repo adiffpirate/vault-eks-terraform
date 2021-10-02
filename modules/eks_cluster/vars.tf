@@ -1,11 +1,10 @@
-variable "project" {
-  type        = string
-  description = "Project Name"
-}
-
-variable "environment" {
-  type        = string
-  description = "Environment"
+variable "context" {
+  type = object({
+    # Project Name
+    project     = string
+    # Environment
+    environment = string
+  })
 }
 
 

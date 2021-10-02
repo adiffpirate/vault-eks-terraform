@@ -13,8 +13,8 @@ resource "aws_security_group" "ssh_eks_cluster" {
   }
 
   tags = {
-    Name    = "${var.eks_cluster_name}-sg-ssh"
-    project = var.project
-    environment = var.environment
+    Name        = "${var.eks_cluster_name}-sg-ssh"
+    project     = local.context.project
+    environment = local.context.environment
   }
 }
