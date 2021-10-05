@@ -21,9 +21,9 @@ output "consul" {
   value = module.consul
 }
 
-# output "vault" {
-#   value = module.vault
-# }
+output "vault" {
+  value = module.vault
+}
 
 output "sensitive" {
   sensitive = true

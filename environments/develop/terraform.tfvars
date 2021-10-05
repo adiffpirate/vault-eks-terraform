@@ -18,19 +18,19 @@ eks_cluster = {
 
   workers = {
     count = 1
-    instance_type = "t2.small"
+    instance_type = "t2.medium"
     volume_size = 5
 
-    asg = {
-      desired = 2
-      min = 1
-      max = 3
+    asg = { # Nodes
+      desired = 4
+      min = 3
+      max = 5
     }
   }
 }
 
 consul = {
-  release_name = "vaultdemo-consul"
+  release_name = "consul"
   namespace = "vault"
 
   helm_chart = {
@@ -38,7 +38,21 @@ consul = {
     values_filepath = "./helm-values.yaml"
 
     override = {
-      "server.replicas" = 2 # Must be less or equal to the number of EKS workers
+      "server.replicas" = "3" # Must be less or equal to the number of nodes (eks_cluster.workers.asg.desired)
+    }
+  }
+}
+
+vault = {
+  release_name = "vault"
+  namespace = "vault"
+
+  helm_chart = {
+    version = "0.15.0"
+    values_filepath = "./helm-values.yaml"
+
+    override = {
+      "server.ha.replicas" = "3" # Must be less or equal to the number of nodes (eks_cluster.workers.asg.desired)
     }
   }
 }

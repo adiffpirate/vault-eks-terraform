@@ -39,3 +39,8 @@ resource "helm_release" "consul" {
     }
   }
 }
+
+locals {
+  # The resource helm_release defines metadata as a list, so we're retrieving the last element from it
+  consul_metadata = helm_release.consul.metadata[length(helm_release.consul.metadata)-1]
+}

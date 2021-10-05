@@ -1,23 +1,24 @@
 output "release_name" {
   description = "Helm Release Name"
-  value       = helm_release.consul.metadata[0].name
+  value       = local.consul_metadata.name
 }
 
 output "namespace" {
   description = "Kubernetes Namespace where Consul was deployed"
-  value       = helm_release.consul.metadata[0].namespace
+  value       = local.consul_metadata.namespace
 }
 
 output "version" {
   description = "Version of the Consul application"
-  value       = helm_release.consul.metadata[0].app_version
+  value       = local.consul_metadata.app_version
 }
 
+# Can be useful for debugging
 # output "helm_release" {
 #   value = {
 #     # Version of the Chart used for this release
-#     version = helm_release.consul.metadata[0].version
+#     version = local.consul_metadata.version
 #     # The compounded values from `values` and `set*` attributes
-#     values = jsondecode(helm_release.consul.metadata[0].values)
+#     values = jsondecode(local.consul_metadata.values)
 #   }
 # }
