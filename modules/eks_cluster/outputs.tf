@@ -33,6 +33,16 @@ output "config_map_aws_auth" {
   value       = module.eks.config_map_aws_auth
 }
 
+output "workers" {
+  value = {
+    # IAM role
+    iam_role = {
+      name = module.eks.worker_iam_role_name
+      arn  = module.eks.worker_iam_role_arn
+    }
+  }
+}
+
 
 # All sensitive data MUST be declared inside this object.
 # (for more information please refer to the root 'outputs.tf' file)
@@ -43,8 +53,8 @@ output "sensitive" {
     # PEM-encoded root certificates bundle for TLS authentication
     ca_certificate = data.aws_eks_cluster.eks.certificate_authority[0].data
 
-    # Service Account Token
-    service_account_token = data.aws_eks_cluster_auth.eks.token
+    # EKS Auth Token
+    auth_token = data.aws_eks_cluster_auth.eks.token
 
   }
 }

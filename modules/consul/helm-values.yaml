@@ -1,0 +1,10 @@
+global:
+  datacenter: vault-data
+
+client:
+  enabled: true
+
+server:
+  replicas: 5
+  disruptionBudget:
+    maxUnavailable: 0

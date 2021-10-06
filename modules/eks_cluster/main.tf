@@ -13,8 +13,9 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "17.20.0"
 
-  cluster_name    = var.eks_cluster.name
-  cluster_version = var.eks_cluster.version
+  cluster_name     = var.eks_cluster.name
+  cluster_version  = var.eks_cluster.version
+  write_kubeconfig = false
 
   vpc_id  = var.network.vpc_id
   subnets = var.network.vpc_private_subnets_ids
