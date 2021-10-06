@@ -10,3 +10,8 @@ Configure kubectl:
 aws eks --region $(terraform output -json context | jq -r .region) \
 	update-kubeconfig --name $(terraform output -json eks_cluster | jq -r .name)
 ```
+
+Initialize Vault:
+```sh
+kubectl -n vault exec -ti {VAULT_POD_NAME} -- vault operator init
+```
