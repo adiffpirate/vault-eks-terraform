@@ -33,6 +33,16 @@ output "config_map_aws_auth" {
   value       = module.eks.config_map_aws_auth
 }
 
+output "workers" {
+  value = {
+    # IAM role
+    iam_role = {
+      name = module.eks.worker_iam_role_name
+      arn  = module.eks.worker_iam_role_arn
+    }
+  }
+}
+
 
 # All sensitive data MUST be declared inside this object.
 # (for more information please refer to the root 'outputs.tf' file)

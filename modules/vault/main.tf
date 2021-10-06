@@ -31,6 +31,29 @@ resource "helm_release" "vault" {
     file("${path.module}/${var.vault.helm_chart.values_filepath}")
   ]
 
+  # Vault Server Configuration (declared here so we can use Auto Unseal via KMS)
+  set {
+    name = "server.ha.config"
+    value = <<EOF
+    api_addr = "http://POD_IP:8200"
+    listener "tcp" {
+      tls_disable     = 1
+      address         = "[::]:8200"
+      cluster_address = "[::]:8201"
+    }
+    storage "consul" {
+      path = "vault"
+      address = "HOST_IP:8500"
+    }
+    seal "awskms" {
+      region = "${var.context.region}"
+      kms_key_id = "${aws_kms_key.vault_unseal.key_id}"
+    }
+    service_registration "kubernetes" {}
+    EOF
+  }
+
+  # Set overrides from .tfvars
   dynamic "set" {
     for_each = var.vault.helm_chart.override
     content {

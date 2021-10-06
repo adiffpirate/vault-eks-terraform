@@ -22,7 +22,7 @@ eks_cluster = {
     volume_size = 5
 
     asg = { # Nodes
-      desired = 4
+      desired = 3
       min = 3
       max = 5
     }
@@ -53,6 +53,9 @@ vault = {
 
     override = {
       "server.ha.replicas" = "3" # Must be less or equal to the number of nodes (eks_cluster.workers.asg.desired)
+      # Debug
+      "server.logLevel"    = "trace"
+      "injector.logLevel"  = "trace"
     }
   }
 }

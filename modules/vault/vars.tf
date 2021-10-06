@@ -1,3 +1,34 @@
+variable "context" {
+  type = object({
+    # Project Name
+    project = string
+
+    # Region
+    region = string
+
+    # Environment
+    environment = string
+  })
+}
+
+
+
+variable "eks_cluster" {
+  type = object({
+
+    # Workers
+    workers = object({
+      # IAM role
+      iam_role = object({
+        name = string
+      })
+    })
+
+  })
+}
+
+
+
 variable "vault" {
   type = object ({
 

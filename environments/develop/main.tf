@@ -23,5 +23,7 @@ module "consul" {
 module "vault" {
   source = "../../modules/vault"
 
-  vault = var.vault
+  context     = var.context
+  eks_cluster = module.eks_cluster
+  vault       = var.vault
 }
