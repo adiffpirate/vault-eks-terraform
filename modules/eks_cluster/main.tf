@@ -28,7 +28,6 @@ module "eks" {
       asg_min_size                  = var.eks_cluster.workers.asg.min
       asg_max_size                  = var.eks_cluster.workers.asg.max
       root_volume_size              = var.eks_cluster.workers.volume_size
-      additional_security_group_ids = [aws_security_group.ssh_eks_cluster.id]
     }
   ]
 
