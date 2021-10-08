@@ -27,7 +27,6 @@ module "vault" {
   depends_on = [module.consul]
 
   context     = var.context
-  network     = module.network
   eks_cluster = module.eks_cluster
   vault       = var.vault
 }
