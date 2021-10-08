@@ -31,6 +31,7 @@ resource "aws_db_instance" "mysql" {
 
   skip_final_snapshot = true
   storage_encrypted   = true
+  multi_az            = var.database.multi_az
   
   publicly_accessible    = true # Potential security risk, use with caution
   vpc_security_group_ids = [aws_security_group.mysql.id]

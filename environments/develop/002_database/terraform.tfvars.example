@@ -8,6 +8,7 @@ database = {
   identifier = "luiz-monteiro-vaultdemo"
   name = "mysqldev"
   username = "admin"
+  multi_az = false
   sg = {
     name             = "luiz-monteiro-vaultdemo-mysql-sg"
     cidr_blocks      = ["0.0.0.0/0"] # Allow connections from anywhere (insecure)

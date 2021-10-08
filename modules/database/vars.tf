@@ -22,6 +22,9 @@ variable "database" {
     # Username that will be created to access the database
     username = string
 
+    # Determine if the database should be replicated between availability zones
+    multi_az = bool
+
     # Security Group
     sg = object({
       name        = string
