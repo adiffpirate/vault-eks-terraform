@@ -50,9 +50,9 @@ vault kv get static/database
 And with the credentials in hand you can access the MySQL Database:
 ```sh
 mysql \
-	-h $(terraform output -json database | jq -r .database.address) \
-	-P $(terraform output -json database | jq -r .database.port) \
-	-u '{THE_USERNAME_DECLARED_ON_TFVARS}' -p
+  -h $(terraform output -json database | jq -r .address) \
+  -P $(terraform output -json database | jq -r .port) \
+  -u '{THE_USERNAME_DECLARED_ON_TFVARS}' -p
 ```
 
 > If you don't have MySQL installed, you can get it [here](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-install.html)
