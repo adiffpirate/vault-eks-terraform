@@ -5,6 +5,7 @@
 **Requirements:**
   - [AWS CLI](https://aws.amazon.com/cli/)
   - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
+  - [Vault CLI](https://www.vaultproject.io/docs/install)
 
 ## Vault
 
@@ -13,7 +14,7 @@
 cd 001_vault
 ```
 
-2. (optional) Configure AWS CLI:
+2. Configure AWS CLI:
 ```sh
 aws configure
 ```
@@ -41,10 +42,10 @@ aws eks --region $(terraform output -json context | jq -r .region) \
 
 7. Initialize Vault:
 ```sh
-kubectl -n vault exec -ti {VAULT_POD_NAME} -- vault operator init -format json | tee $HOME/.vault_keys.json
+kubectl -n vault exec -ti vault-0 -- vault operator init -format json | tee $HOME/.vault_keys.json
 ```
 
-8. Set required Vault environment variables:
+8. Get Vault address and token:
 ```sh
 export VAULT_ADDR=$(terraform output -json vault | jq -r .server_url)
 ```

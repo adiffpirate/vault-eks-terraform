@@ -13,6 +13,11 @@ output "version" {
   value       = local.vault_metadata.app_version
 }
 
+output "server_url" {
+  description = "Vault Server URL"
+  value       = "http://${data.kubernetes_service.vault_server.status[0].load_balancer[0].ingress[0].hostname}:8200"
+}
+
 # Can be useful for debugging
 # output "helm_release" {
 #   value = {

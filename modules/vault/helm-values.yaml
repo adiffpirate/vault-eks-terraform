@@ -481,7 +481,7 @@ server:
     # clusterIP: 
     
     # Type of service to create (can also be a NodePort)
-    type: "ClusterIP"
+    type: "LoadBalancer"
     # Port on which Vault server is listening inside the pod
     port: 8200
     # Port on which the service is listening
