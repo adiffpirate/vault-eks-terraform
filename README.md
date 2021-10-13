@@ -47,8 +47,6 @@ vault login $VAULT_TOKEN
 vault kv get static/database
 ```
 
-> If you don't have the Vault CLI installed, you can get it [here](https://www.vaultproject.io/docs/install)
-
 And with the credentials in hand you can access the MySQL Database:
 ```sh
 mysql \
@@ -57,4 +55,4 @@ mysql \
   -u '{THE_USERNAME_DECLARED_ON_TFVARS}' -p
 ```
 
-> If you don't have MySQL installed, you can get it [here](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-install.html)
+> If you don't have MySQL CLI installed, you can get it [here](https://dev.mysql.com/doc/mysql-shell/8.0/en/mysql-shell-install.html)
