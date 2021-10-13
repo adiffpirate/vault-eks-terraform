@@ -30,6 +30,8 @@ to, again, ensure high availability.
 
 The steps to spin up the infrastructure if declared within each environment.
 
+  - [Development](environments/develop)
+
 ## Post Instalation
 
 After everything is setup you should be able to access Vault via CLI.
