@@ -31,6 +31,9 @@ to, again, ensure high availability.
 The steps to spin up the infrastructure if declared within each environment.
 
   - [Development](environments/develop)
+```sh
+cd environments/develop
+```
 
 ## Post Instalation
 
