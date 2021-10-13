@@ -10,7 +10,7 @@ database = {
   username = "admin"
   multi_az = false
   sg = {
-    name             = "luiz-monteiro-vaultdemo-mysql-sg"
-    cidr_blocks      = ["0.0.0.0/0"] # Allow connections from anywhere (insecure)
+    name        = "luiz-monteiro-vaultdemo-mysql-sg"
+    cidr_blocks = ["0.0.0.0/0"] # Allow connections from anywhere (insecure)
   }
 }
