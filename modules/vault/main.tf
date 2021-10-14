@@ -63,14 +63,6 @@ resource "helm_release" "vault" {
   }
 }
 
-# Vault Server Data
-data "kubernetes_service" "vault_server" {
-  metadata {
-    name      = "vault-active"
-    namespace = var.vault.namespace
-  }
-}
-
 locals {
   # The resource helm_release defines metadata as a list, so we're retrieving the last element from it
   vault_metadata = helm_release.vault.metadata[length(helm_release.vault.metadata)-1]

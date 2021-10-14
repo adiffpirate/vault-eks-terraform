@@ -5,7 +5,6 @@
 **Requirements:**
   - [AWS CLI](https://aws.amazon.com/cli/)
   - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-  - [Vault CLI](https://www.vaultproject.io/docs/install)
 
 ## Vault
 
@@ -47,7 +46,7 @@ kubectl -n vault exec -ti vault-0 -- vault operator init -format json | tee $HOM
 
 8. Get Vault address and token:
 ```sh
-export VAULT_ADDR=$(terraform output -json vault | jq -r .server_url)
+export VAULT_ADDR=$(kubectl get service -n vault -o json vault-active | jq -r '"http://" + .status.loadBalancer.ingress[0].hostname + ":" + (.spec.ports[] | select(.name == "http") | .port | tostring)')
 ```
 ```sh
 export VAULT_TOKEN=$(cat $HOME/.vault_keys.json | jq -r .root_token)
