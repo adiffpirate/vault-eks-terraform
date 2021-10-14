@@ -326,7 +326,7 @@ server:
 
     # When set to a value, enables HTTP/HTTPS probes instead of using the default exec probe.
     # The http/https scheme is controlled by the tlsDisable value
-    path: "/v1/sys/health?standbyok=true&sealedcode=200"
+    path: "/v1/sys/health?standbyok=true&sealedcode=204&uninitcode=204"
     
     # How many probe failures will be tolerated by Kubernetes
     failureThreshold: 2
@@ -481,7 +481,7 @@ server:
     # clusterIP: 
     
     # Type of service to create (can also be a NodePort)
-    type: "ClusterIP"
+    type: "LoadBalancer"
     # Port on which Vault server is listening inside the pod
     port: 8200
     # Port on which the service is listening
