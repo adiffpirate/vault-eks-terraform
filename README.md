@@ -28,9 +28,9 @@ to, again, ensure high availability.
 
 ## Instalation
 
-The steps to spin up the infrastructure if declared within each environment.
+The steps to spin up the infrastructure are declared within each environment.
 
-  - [Development](environments/develop)
+- [Development](environments/develop)
 ```sh
 cd environments/develop
 ```
